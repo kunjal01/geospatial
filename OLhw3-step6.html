@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>hw3 OL</title>
+<script src="https://openlayers.org/api/OpenLayers.js"></script>
+<style>
+#map {
+    width: 800px;
+    height: 800px;
+}
+</style>
+</head>
+
+<body>
+<div id="map"></div>
+<script>
+
+function initMap() {
+        map = new OpenLayers.Map('map');
+        basemap = new OpenLayers.Layer.OSM("Simple OSM Map");
+        map.addLayer(basemap);
+        markers = new OpenLayers.Layer.Markers("Markers");
+        map.addLayer(markers);
+}
+
+function addMarker(latitude, longitude) {
+        var lonLat = new OpenLayers.LonLat(longitude, latitude)
+            .transform(
+                new OpenLayers.Projection("EPSG:4326"),
+                map.getProjectionObject() 
+        );
+        var point = new OpenLayers.Marker(lonLat);
+        markers.addMarker(point);
+        map.setCenter(lonLat, 15);
+}// addMarker()
+
+
+// load and setup map layers
+initMap();
+
+// here's how to plot just ONE [lat,long] on the map! 
+addMarker(34.0305668, -118.2826955); // Home
+
+//Waterworks
+addMarker(34.02019876074651, -118.28521168343609); // Trojan Horse Fountain
+addMarker(34.02222824254412, -118.28554339535204) // Bing Theatre Fountain
+addMarker(34.02046438080094, -118.28891170735945) // Epstein Plaza Fountain
+
+//Blue Light
+addMarker(34.02329060970857, -118.28626877491368) // Cinematic Arts BL
+addMarker(34.0227677, -118.2893872) // Kapriellan Hall BL
+addMarker(34.02518429885078, -118.28887142172871) // Engemann Center BL
+
+//Coffee
+addMarker(34.0190314, -118.287668) // Beckett Center Cafe
+addMarker(34.02007, -118.2900013) // Ronald Tutor Cafe
+addMarker(34.0217309297461, -118.28217981313894) // Starbucks Leavey
+
+//Department Buildings
+addMarker(34.01922158273916, -118.28618473823654) // Earth Science
+addMarker(34.02213344992379, -118.28604157505424) // USC Annenberg
+addMarker(34.02141853588331, -118.28398104621853) // Joseph Medicine
+
+
+</script>
+</body>
+</html>
